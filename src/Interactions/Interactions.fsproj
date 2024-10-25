@@ -5,9 +5,9 @@
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Server.fs" />
-    <Compile Include="CameraModel.fs" />
-    <Compile Include="OrbitController.fs" />
+    <None Include="paket.references" />
+    <Compile Include="Utilities.fs" />
+    <Compile Include="Shaders.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
