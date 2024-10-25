@@ -1,0 +1,21 @@
+framework: net8.0
+storage: none
+source https://api.nuget.org/v3/index.json
+
+
+nuget FSharp.Core               >= 8.0.0 lowest_matching: true
+nuget Aardvark.Base             ~> 5.3.4
+nuget Aardvark.Base.FSharp      ~> 5.3.4
+nuget Aardvark.Build            ~> 2.0.3
+
+
+nuget Aardvark.Dom              ~> 1.0.5
+nuget Aardvark.Dom.Elm          ~> 1.0.5
+nuget Aardvark.Dom.Remote       ~> 1.0.5
+nuget Aardvark.Dom.Giraffe      ~> 1.0.5
+
+nuget Adaptify.MSBuild          ~> 1.3.3
+
+nuget Aardvark.Application.Utilities ~> 5.5.1
+nuget Aardvark.PixImage.ImageSharp ~> 2.0.1
+nuget Aardium ~> 2.1.1
