@@ -9,6 +9,13 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SimpleSceneGraph", "src\Sim
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Interactions", "src\Interactions\Interactions.fsproj", "{B6C6CCCC-0F68-49F9-9D0C-40CFA62C091B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A9F26208-C059-42B3-BD3C-C9B63CB368FE}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+		paket.dependencies = paket.dependencies
+		paket.lock = paket.lock
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

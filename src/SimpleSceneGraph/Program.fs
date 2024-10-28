@@ -1,10 +1,11 @@
-﻿open FSharp.Data.Adaptive
+﻿open System
+open FSharp.Data.Adaptive
 open Aardvark.Base
 open Aardvark.Rendering
 open Aardvark.Dom
 open Aardvark.Application
 open Aardvark.Application.Slim
-
+open SimpleSceneGraph
 
 let rand = RandomSystem()
 
@@ -16,6 +17,9 @@ let main _args =
     // texture will be loaded from a file when needed
     let grassTexture =
         FileTexture(Path.combine [__SOURCE_DIRECTORY__; ".."; ".."; "data"; "grass.jpg"], true) :> ITexture
+
+    let brickTexture =
+        FileTexture(Path.combine [__SOURCE_DIRECTORY__; ".."; ".."; "data"; "brick.jpg"], true) :> ITexture
 
     // a currently empty array of points
     let points = 
@@ -72,7 +76,10 @@ let main _args =
             // Trafo3d is our representation of a simple 4x4 matrix with some additional information.
             Sg.View (AVal.map (fun v -> CameraView.viewTrafo(v)) view)
             Sg.Proj (AVal.map (fun f -> Frustum.projTrafo(f)) proj)
-
+            
+            // let t0 = DateTime.Now
+            // Sg.Trafo(win.Time |> AVal.map (fun t -> Trafo3d.RotationZ((t - t0).TotalSeconds * 0.5)))
+            
             // here we render a unit-sized cube
             sg {
                 // we apply a shader doing basic transformation and a simple lighting
@@ -84,7 +91,7 @@ let main _args =
                 Sg.Translate(0.0, 0.0, 0.5)
                 Primitives.Box(V3d.III, C4b.Red)
             }
-
+       
 
             // and a ground-plane with our simple grass-texture from above
             sg {
@@ -117,8 +124,8 @@ let main _args =
                 // a shader for creating point-sprites
                 Sg.Shader {
                     DefaultSurfaces.trafo
-                    DefaultSurfaces.pointSprite
-                    DefaultSurfaces.pointSpriteFragment
+                    Shader.pointSize
+                    Shader.circularPoint
                 }
 
                 // the point-size (as expected by the pointSprite shader) should be 10px
@@ -134,6 +141,32 @@ let main _args =
                 Sg.Render(points |> AVal.map Array.length)
 
             }
+        
+            // sg {
+            //     Sg.Translate(3.0, 0.0, 0.5)
+            //     Sg.Shader {
+            //         DefaultSurfaces.trafo
+            //         DefaultSurfaces.diffuseTexture
+            //         DefaultSurfaces.simpleLighting
+            //     }
+            //     view |> AVal.map (fun v ->
+            //         let distance = Vec.distance v.Location (V3d(3.0, 0.0, 0.5))
+            //         
+            //         if distance > 5.0 then
+            //             sg {
+            //                 Sg.Uniform("DiffuseColorTexture", AVal.constant grassTexture)
+            //                 Primitives.Box(V3d.III, C4b.Red)
+            //             }
+            //         else 
+            //             sg {   
+            //                 Sg.Uniform("DiffuseColorTexture", AVal.constant brickTexture)
+            //                 Primitives.Sphere(0.5, C4b.Aqua)
+            //             }
+            //         
+            //     )
+            // }
+        
+        
 
 
         }

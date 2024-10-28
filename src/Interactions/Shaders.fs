@@ -54,7 +54,8 @@ module Shader =
             V2d(-0.48980017066546505, 0.4176096007886444) 
             V2d(-0.6984946482175952, -0.24999220737512617) 
         |]
-    let internal shadowLight (v : Effects.Vertex) =
+        
+    let shadowLight (v : Effects.Vertex) =
         fragment {
             let n = v.n |> Vec.normalize
             let c = uniform.LightLocation - v.wp.XYZ |> Vec.normalize

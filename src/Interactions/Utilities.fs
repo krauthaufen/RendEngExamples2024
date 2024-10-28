@@ -9,6 +9,32 @@ open Aardvark.Dom.Utilities
 open Aardium
 
 module Sg =
+    module Shader =
+        open FShade
+        let simpleLighting (v : Effects.Vertex) =
+            fragment {
+                return V4d.IIII
+            }
+            
+    let slideStuff() =
+        sg {
+            Sg.Shader { Shader.simpleLighting }
+            Sg.BlendMode BlendMode.Add
+            
+            sg {
+                Sg.OnClick (fun e ->
+                    printfn "clicked sphere: %A" e.WorldPosition
+                )
+                Sg.Translate(10.0, 0.0, 0.0)
+                Primitives.Sphere(radius = 1.0, color = C4b.Red)
+            }
+            sg {
+                Sg.Scale 10.0
+                Primitives.Box(size = V3d(2,2,2))
+            }
+        }
+        
+    
     let mapShaders (mapEffect : FShade.Effect -> FShade.Effect) (scene : ISceneNode) =
         let mapping (o : IRenderObject) =
             match o with
@@ -16,6 +42,9 @@ module Sg =
                 match o.Surface with
                 | Surface.Effect e ->
                     let o2 = RenderObject.Clone(o)
+                    match RenderObject.traversalStates.TryGetValue o with
+                    | (true, s) -> RenderObject.traversalStates.Add(o2, s)
+                    | _ -> ()
                     o2.Surface <- Surface.Effect (mapEffect e)
                     o2 :> IRenderObject
                 | _ ->
