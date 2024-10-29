@@ -1,9 +1,9 @@
 using CSharp.Data.Adaptive;
 using FSharp.Data.Adaptive;
 
-namespace PlainAardvarkRendering_NetFramework;
+namespace CSharpScene;
 
-public class HelloAdaptive
+class HelloAdaptive
 {
     public static void Run()
     {
@@ -16,6 +16,5 @@ public class HelloAdaptive
 
         using (Adaptive.Transact) { a.Value = 3; }
         Console.WriteLine("D: {0}", d.GetValue());
-        
     }
 }

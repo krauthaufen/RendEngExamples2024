@@ -1,0 +1,34 @@
+{
+    "configurations": [
+      {
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "Build: solution",
+        "name": "Launch CSharpScene",
+        "program": "${workspaceFolder}/src/CSharpScene/bin/Debug/net8.0/CSharpScene.dll",
+        "args": [],
+        "cwd": "${workspaceFolder}/src/CSharpScene",
+        "stopAtEntry": false
+      },
+      {
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "Build: solution",
+        "name": "Launch Interactions",
+        "program": "${workspaceFolder}/src/Interactions/bin/Debug/net8.0/Interactions.dll",
+        "args": [],
+        "cwd": "${workspaceFolder}/src/Interactions",
+        "stopAtEntry": false
+      },
+      {
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "Build: solution",
+        "name": "Launch SimpleSceneGraph",
+        "program": "${workspaceFolder}/src/SimpleSceneGraph/bin/Debug/net8.0/SimpleSceneGraph.dll",
+        "args": [],
+        "cwd": "${workspaceFolder}/src/SimpleSceneGraph",
+        "stopAtEntry": false
+      }
+    ]
+  }

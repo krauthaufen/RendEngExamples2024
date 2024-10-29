@@ -1,4 +1,5 @@
 ﻿using Aardvark.Base;
+using Aardvark.Application;
 using FSharp.Data.Adaptive;
 using CSharp.Data.Adaptive;
 using Aardvark.Rendering;
@@ -7,7 +8,7 @@ using Aardvark.SceneGraph.CSharp;
 using Aardvark.Application.Slim;
 using Effects = Aardvark.Rendering.Effects;
 
-namespace PlainAardvarkRendering_NetFramework
+namespace CSharpScene
 {
     class HelloAnimation
     {
@@ -33,7 +34,7 @@ namespace PlainAardvarkRendering_NetFramework
                 
                 // camera controller WSAD
                 var controlledViewTrafo = 
-                    Aardvark.Application.DefaultCameraController.control(
+                    DefaultCameraController.control(
                         win.Mouse, win.Keyboard, win.Time, 
                         initialViewTrafo
                     );
@@ -56,7 +57,7 @@ namespace PlainAardvarkRendering_NetFramework
                     .WithEffects(new[]
                     {
                         Effects.Trafo.Effect, 
-                        Aardvark.Rendering.Effects.SimpleLighting.Effect
+                        Effects.SimpleLighting.Effect
                     })
                     .ViewTrafo(controlledViewTrafo.Map(c => c.ViewTrafo))
                     .ProjTrafo(frustum.Map(f => f.ProjTrafo()));

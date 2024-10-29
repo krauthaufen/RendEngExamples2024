@@ -4,7 +4,7 @@ using Aardvark.SceneGraph.CSharp;
 using Aardvark.Application.Slim;
 using Effects = Aardvark.Rendering.Effects;
 
-namespace PlainAardvarkRendering_NetFramework
+namespace CSharpScene
 {
     class Program
     {

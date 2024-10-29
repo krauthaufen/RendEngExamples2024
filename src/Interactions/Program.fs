@@ -165,7 +165,6 @@ let main args =
                     Top "0px"
                     Left "0px"
                     FontFamily "monospace"
-                    FontSize "30pt"
                     Color "white"
                     UserSelect "none"
                     ZIndex 999
@@ -182,7 +181,6 @@ let main args =
                 table {
                     Style [
                         Color "white"
-                        FontSize "20pt"
                     ]
                     tr {
                         td { "shadow passes" }
