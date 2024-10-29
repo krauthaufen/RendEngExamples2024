@@ -22,6 +22,8 @@ let main args =
     let hoverPosition = cval<option<V3d>> None
     let points = clist<V3d> [||]
     let hoverPoint = cval<option<Index>> None
+    let shadowRenderCount = cval 0
+    let mainRenderCount = cval 0
     
     // We adaptively calculate a view matrix for the light source
     // s.t. it alwyas looks at the center of the scene
@@ -133,7 +135,6 @@ let main args =
             scene |> Sg.mapShaders (fun e -> FShade.Effect.compose [e; white])
         }
 
-    let renderCount = cval 0
     
     // here we adaptively render our caster-scene to a texture and get a `IAdaptiveResource<IBackendTexture>` back.
     // This `IAdaptiveResource` is basically an `aval` that also carries information on how to destroy the resource
@@ -143,9 +144,10 @@ let main args =
         let objects = casterScene.GetRenderObjects (TraversalState.empty runtime)
         let task = app.Runtime.CompileRender(signature, objects)
         
+        // we sneak in a RenderTask that counts its executions (for counting the number of shadow-passes)
         let counterTask =
             RenderTask.custom (fun _ ->
-                transact (fun () -> renderCount.Value <- renderCount.Value + 1)
+                transact (fun () -> shadowRenderCount.Value <- shadowRenderCount.Value + 1)
             )
         
         RenderTask.ofList [task; counterTask]
@@ -163,6 +165,7 @@ let main args =
                     Top "0px"
                     Left "0px"
                     FontFamily "monospace"
+                    FontSize "30pt"
                     Color "white"
                     UserSelect "none"
                     ZIndex 999
@@ -176,9 +179,20 @@ let main args =
                     )
                 }
                 
-                renderCount |> AVal.map (fun cnt ->
-                    sprintf "shadow-passes: %d" cnt    
-                )
+                table {
+                    Style [
+                        Color "white"
+                        FontSize "20pt"
+                    ]
+                    tr {
+                        td { "shadow passes" }
+                        td { AVal.map string shadowRenderCount }
+                    }
+                    tr {
+                        td { "main passes" }
+                        td { AVal.map string mainRenderCount }
+                    }
+                }
                 
                 
                 
@@ -220,6 +234,10 @@ let main args =
                     Background "black"
                 ]
                 
+                RenderControl.OnRendered (fun _ ->
+                    transact (fun () -> mainRenderCount.Value <- mainRenderCount.Value + 1)    
+                )
+                
                 // the standard 90 degree projection 
                 let! info = RenderControl.Info
                 Sg.Proj(
@@ -248,7 +266,7 @@ let main args =
                     transact (fun () -> hoverPosition.Value <- Some e.WorldPosition)
                 )
                 
-                // when you right-click anywhere on the scene we add a new point there.
+                // when you shift+click anywhere on the scene we add a new point there.
                 Sg.OnTap(fun e ->
                     if e.Shift || e.Button = Button.Right then
                         transact (fun () -> points.Add e.WorldPosition |> ignore)
@@ -261,6 +279,7 @@ let main args =
                 Sg.Uniform("ShadowProj", lightProj)
                 Sg.Uniform("ShadowMap", depthTexture)
 
+                
                 // render our scene by composing our `shadowLight` shader to whatever shader the objects use
                 // for rendering the scene.
                 sg {
@@ -272,11 +291,11 @@ let main args =
 
                 // the light-source as a sphere with drag interaction
                 sg {
+                    Sg.Cursor "hand"
+                    
                     Sg.Shader {
                         DefaultSurfaces.trafo
                     }
-                    Sg.Cursor "hand"
-                    
                     
                     let mutable down = false
                     Sg.OnPointerDown((fun e ->
@@ -303,8 +322,8 @@ let main args =
                         down <- false
                         e.Context.ReleasePointerCapture(e.Target, e.PointerId)
                         false
-                            
                     )
+                    
                     Sg.Translate lightPosition
                     Primitives.Sphere(0.5)
                 }

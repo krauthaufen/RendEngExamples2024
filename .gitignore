@@ -1,3 +1,4 @@
+**/*.user
 Aardvark.log
 .ionide
 src/**/*.o

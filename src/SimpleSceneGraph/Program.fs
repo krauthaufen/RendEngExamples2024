@@ -79,7 +79,7 @@ let main _args =
             
             // let t0 = DateTime.Now
             // Sg.Trafo(win.Time |> AVal.map (fun t -> Trafo3d.RotationZ((t - t0).TotalSeconds * 0.5)))
-            
+            //
             // here we render a unit-sized cube
             sg {
                 // we apply a shader doing basic transformation and a simple lighting
@@ -141,7 +141,7 @@ let main _args =
                 Sg.Render(points |> AVal.map Array.length)
 
             }
-        
+            //
             // sg {
             //     Sg.Translate(3.0, 0.0, 0.5)
             //     Sg.Shader {
