@@ -1,3 +1,5 @@
+Code for [Lecture](./Lecture.md)
+
 ### Build
 
 requires [DotNet SDK 8.0.403](https://dotnet.microsoft.com/en-us/download)
