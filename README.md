@@ -6,6 +6,10 @@ requires [DotNet SDK 8.0.403](https://dotnet.microsoft.com/en-us/download)
 2. `dotnet paket restore`
 3. `dotnet build`
 
+#### For the WebAssembly project
+`dotnet workload install wasm-tools`
+
+
 ### Running
 
 * use Visual Studio / JetBrains Rider / VSCode
