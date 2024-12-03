@@ -25,15 +25,22 @@ Reusable Components/Design for Rendering Engines
 - [Graphics APIs and Insights for Rendering Engines](./lecture/02-GraphicsHardwareAndInsights.pdf)
 - [Scene Representation for Rendering Engines](./lecture/03-Scene-Representation.pdf)
 
-    Additional materials:
+    Accompanaying papers:
     - [Paper: Semantic Scene Graph](./lecture/papers/Paper-Semantic-Scenegraph.pdf)
     - [Conference Slides: Semantic Scene Graph](./lecture/papers/Slides-Semantic-SceneGraph.pdf)
     - [Paper: Lazy Incremental Computation for Efficient Scene Graph Rendering](./lecture/papers/Paper-Lazy-Incremental-Computation.pdf)
     - [Conference Slides: Lazy Incremental Computation for Efficient Scene Graph Rendering](./lecture/papers/Slides-Lazy-Incremental-Computation.pdf)
 - [Case Study + Aardvark Introduction/Lessons learned](./lecture/04-Introduction-Aardvark.pdf)
-    
-    Additional material:
+
+    Accompanaying papers:
     - [Paper: An Incremental Rendering VM](./lecture/papers/Paper-An-Incremental-Rendering-VM.pdf)
+- [Rendering Engine Architectures & ECS](./lecture/05-Rendering%20Engine%20Architectures%20&%20ECS.pdf)
+- [DSLs and Shader Systems](./lecture/06-DSLs%20and%20Shader%20Systems.pdf)
+
+    Additional papers:
+    - [Paper: Language Integrated Shaders](./lecture/papers/paper-LINS.pdf)
+- [Dataflow in Scenarify](./lecture/07-Data-flow%20in%20Scenarify.pdf)
+- [Materials & Lights](./lecture/08-Materials%20&%20Lights%20Slides.pdf)
 
 ### Build
 
