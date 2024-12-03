@@ -1,9 +1,8 @@
 ## Design & Implementation of a Rendering Engine, Lecture @ [TU WIEN](https://www.cg.tuwien.ac.at/courses/RendEng/VU/2024W)
 
-### Lecturers
+### Lecturers (in alphabetical order)
 
 Daniel Cornel, Georg Haaser, Christian Luksch, Andreas Walch, Stefan Maierhofer, Harald Steinlechner, Attila Szabo
-
 
 ### Learning outcomes
 After successful completion of the course, students are able to plan, implement, test and evaluate the design and programming of a rendering engine. The scene description, graphical APIs and optimization techniques play an important role.
